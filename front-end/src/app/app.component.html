@@ -3,19 +3,23 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Limit</th>
-      <th scope="col">Temperature</th>
+      <th scope="col">Tempature</th>
       <th scope="col">HasFire</th>
+      <th scope="col">FireStartAt</th>
       <th scope="col">Function</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th scope="row">1</th>
-      <td>{{this.data.limit}}</td>
-      <td>{{this.data.tempature}}</td>
-      <td *ngIf="this.flag">Yes</td>
-      <td *ngIf="!this.flag">No</td>
-      <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Set Limit</button></td>
+      <td>{{this.limit}}</td>
+      <td>{{this.tempature}}</td>
+      <td *ngIf="this.flag " class="text-danger">Yes</td>
+      <td *ngIf="!this.flag" class="text-success">No</td>
+      <td *ngIf="this.timeStartFire.hr +this.timeStartFire.minutes+this.timeStartFire.second >0">{{this.timeStartFire.hr}}hr:{{this.timeStartFire.minutes}}m:{{this.timeStartFire.second}}s</td>
+      <td *ngIf="this.timeStartFire.hr+this.timeStartFire.minutes+this.timeStartFire.second ==0">No</td>
+      <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Set
+          Limit</button></td>
     </tr>
 
   </tbody>
@@ -25,18 +29,25 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">CẬP NHẬT GIỚI HẠN NHIỆT ĐỘ</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="input-group input-group-lg">
-          <span class="input-group-text" id="inputGroup-sizing-lg">Large</span>
-          <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" [(ngModel)]="newValue">
-        </div>
+
+
+        <form [formGroup]="updateForm" style="width: 100%;">
+          <div class="input-group input-group-lg">
+            <span class="input-group-text" id="inputGroup-sizing-lg">Giới hạn</span>
+            <input type="number" class="form-control" aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-lg"  formControlName="newValue" value={{this.limit}}>
+          </div>
+        </form>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="this.abc()">Save changes</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="changeLimit()">Save
+          changes</button>
       </div>
     </div>
   </div>

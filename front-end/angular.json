@@ -103,6 +103,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "y:build:production",
+            "firebaseProject": "arduino-2022-c2d79",
+            "firebaseHostingSite": "arduino-2022-c2d79"
+          }
         }
       }
     }

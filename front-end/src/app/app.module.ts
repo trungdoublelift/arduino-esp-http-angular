@@ -5,8 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideDatabase,getDatabase } from '@angular/fire/database';
-import { FormsModule } from '@angular/forms';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -16,8 +18,12 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideDatabase(() => getDatabase()),
-    FormsModule
+
+    FormsModule,
+    ReactiveFormsModule,
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore())
+
   ],
   providers: [],
   bootstrap: [AppComponent]
