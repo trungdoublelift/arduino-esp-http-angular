@@ -8,6 +8,7 @@ app.use(cors());
 
 const admin = require('firebase-admin');
 const serviceAccount = require('./key.json');
+const { query } = require("express");
 function init() {
     try {
         admin.initializeApp({
@@ -26,28 +27,25 @@ function init() {
     }
 }
 init();
-app.get("/tempature", async (req, res) => {
-    let temp = req.query.temperature;
-    console.log("temp=" + temp);
+
+app.get("/", async (req, res) => {
+    res.send("true");
+
+
+})
+app.get("/t", async (req, res) => {
+    let {temp} = req.query;
+    console.log(req.query);
     let flag = "false";
     const data = (await admin.firestore().collection('main').doc('limit').get()).data();
     const alarm = (await admin.firestore().collection('main').doc('alarm').get()).data();
-
+    
     await admin.firestore().collection("main").doc("temp").update({
         temp: temp,
         date: Date.now()
     });
-    if (data.limit <= parseFloat(temp) || alarm.alarm) {
+    if(data.limit <= parseFloat(temp)||alarm.alarm){
         flag = "true";
-        await admin.firestore().collection("main").doc("alarm").update({
-            alarm: true
-        });
-    } else {
-        await admin.firestore().collection("main").doc("alarm").update({
-            alarm: false
-        });
     }
     res.send(flag);
-
-
 })

@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="card-header">
+    DataTable
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <caption>List of data</caption>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Limit</th>
+            <th scope="col">Tempature</th>
+            <th scope="col">HasFire</th>
+            <th scope="col">LastTimeRun</th>
+
+            <th scope="col">FireStartAt</th>
+
+            <th scope="col">Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="row">1</td>
+            <td>{{limit}}</td>
+            <td>{{temp}}</td>
+            <td *ngIf="hasFire " class="text-danger">Yes</td>
+            <td *ngIf="!hasFire" class="text-success">No</td>
+            <td>{{date.hr}}:{{date.min}}</td>
+
+
+            <td>0</td>
+            <td><button type="button" class="btn btn-primary" (click)="openModal()" >Set
+                Limit</button></td>
+
+
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

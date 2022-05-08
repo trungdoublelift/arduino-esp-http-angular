@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h4 class="modal-title">Set limit!</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="updateForm" style="width: 100%;">
+        <div class="input-group input-group-lg">
+            <span class="input-group-text" id="inputGroup-sizing-lg">Giới hạn</span>
+            <input type="number" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-lg" formControlName="newValue" value={{this.limit}}>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary"  (click)="changeLimit()">Save
+        changes</button>
+    <button type="button" class="btn btn-outline-dark" (click)="close()">Close</button>
+</div>

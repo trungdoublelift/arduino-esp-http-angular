@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "y": {
+    "fire-alarm": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/y",
+            "outputPath": "dist/fire-alarm",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "y:build:production"
+              "browserTarget": "fire-alarm:build:production"
             },
             "development": {
-              "browserTarget": "y:build:development"
+              "browserTarget": "fire-alarm:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "y:build"
+            "browserTarget": "fire-alarm:build"
           }
         },
         "test": {
@@ -103,19 +103,9 @@
             ],
             "scripts": []
           }
-        },
-        "deploy": {
-          "builder": "@angular/fire:deploy",
-          "options": {
-            "prerender": false,
-            "ssr": false,
-            "browserTarget": "y:build:production",
-            "firebaseProject": "arduino-2022-c2d79",
-            "firebaseHostingSite": "arduino-2022-c2d79"
-          }
         }
       }
     }
   },
-  "defaultProject": "y"
+  "defaultProject": "fire-alarm"
 }
