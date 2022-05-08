@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "arduino-2022-c2d79": {
+      "hosting": {
+        "y": [
+          "arduino-2022-c2d79"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "arduino-2022-c2d79"
+  }
+}
