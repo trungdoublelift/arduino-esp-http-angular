@@ -39,6 +39,13 @@ app.get("/tempature", async (req, res) => {
     });
     if (data.limit <= parseFloat(temp) || alarm.alarm) {
         flag = "true";
+        await admin.firestore().collection("main").doc("alarm").update({
+            alarm: true
+        });
+    } else {
+        await admin.firestore().collection("main").doc("alarm").update({
+            alarm: false
+        });
     }
     res.send(flag);
 
