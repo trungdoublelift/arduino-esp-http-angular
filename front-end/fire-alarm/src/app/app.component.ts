@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
 
   constructor(private db: Firestore,private modalService: NgbModal) {
     // console.log("tesst");
-    
+
   }
 
   public alarm: boolean = false;
@@ -28,8 +28,9 @@ export class AppComponent implements OnInit {
     hr: 0,
     min: 0
   }
+   public dateFormat:any;
   ngOnInit(): void {
-    
+
     this.start();
   }
 
@@ -46,15 +47,20 @@ export class AppComponent implements OnInit {
         min: currDate.getMinutes()
       }
       if (this.limit <= this.temp) {
-        this.hasFire = true;
+        if(this.hasFire==false){
+          updateDoc(doc(this.db,'main','temp'),{date:Date.now()})
+          this.hasFire = true;
+          this.dateFormat = new Date(data[2].date);
+        }
       }else{
         this.hasFire = false;
+        this.dateFormat=0
       }
     })
   }
 
   openModal(){
-    
+
     const modalRef = this.modalService.open(LimitModalComponent);
     modalRef.componentInstance.limit = this.limit;
     modalRef.result.then((res:any)=>{
@@ -62,11 +68,21 @@ export class AppComponent implements OnInit {
         this.updateLimit(res);
       }
     });
-    
+
   }
+
 
   async updateLimit(limit:number){
     const limitRef = doc(this.db, 'main', 'limit');
     await updateDoc(limitRef, { limit: limit });
+  }
+  async turnAlarm(temp:any){
+    if(temp=='on'){
+      await updateDoc(doc(this.db,'main','alarm'),{alarm:true})
+    }
+    else{
+      await updateDoc(doc(this.db,'main','alarm'),{alarm:false})
+    }
+
   }
 }
