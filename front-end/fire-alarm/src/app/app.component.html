@@ -13,9 +13,7 @@
             <th scope="col">Tempature</th>
             <th scope="col">HasFire</th>
             <th scope="col">LastTimeRun</th>
-
             <th scope="col">FireStartAt</th>
-
             <th scope="col">Function</th>
           </tr>
         </thead>
@@ -27,13 +25,13 @@
             <td *ngIf="hasFire " class="text-danger">Yes</td>
             <td *ngIf="!hasFire" class="text-success">No</td>
             <td>{{date.hr}}:{{date.min}}</td>
-
-
-            <td>0</td>
-            <td><button type="button" class="btn btn-primary" (click)="openModal()" >Set
-                Limit</button></td>
-
-
+            <td *ngIf="this.dateFormat!=0" class="text-danger">{{this.dateFormat}}</td>
+            <td *ngIf="this.dateFormat==0" class="text-success">Fire not started yet</td>
+            <td>
+              <button type="button" class="btn btn-primary" (click)="openModal()" >SetLimit</button>
+              <button type="button" class="btn btn-primary" (click)="turnAlarm('on')" *ngIf="!this.alarm" class="btn btn-success">Turn on Alarm</button>
+              <button type="button" class="btn btn-primary" (click)="turnAlarm('off')"*ngIf="this.alarm" class="btn btn-danger">Turn off Alarm</button>
+            </td>
           </tr>
 
         </tbody>
