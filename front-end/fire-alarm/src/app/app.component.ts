@@ -21,7 +21,10 @@ export class AppComponent implements OnInit, OnDestroy {
   public limit: any = 0;
   public date: any = {
     hr: 0,
-    min: 0
+    min: 0,
+    date:0,
+    month:0,
+    year:0
   };
   public temp: any = 0;
   public hasFire: boolean = false;
@@ -48,7 +51,10 @@ export class AppComponent implements OnInit, OnDestroy {
       let currDate = new Date(data[2].date);
       this.date = {
         hr: currDate.getHours(),
-        min: currDate.getMinutes()
+        min: currDate.getMinutes(),
+        date:currDate.getUTCDate(),
+        month:currDate.getUTCMonth()+1,
+        year:currDate.getUTCFullYear()
       }
       if (this.limit <= this.temp) {
         if (this.hasFire == false) {
@@ -56,7 +62,7 @@ export class AppComponent implements OnInit, OnDestroy {
           this.hasFire = true;
           // this.dateFormat = new Date(data[2].date);
           let temp = new Date(data[3].date);
-          this.dateFormat = temp.getUTCDate() + "/" + (temp.getUTCMonth() + 1) + '/' + temp.getUTCFullYear() + " - " + temp.getHours() + ":" + temp.getMinutes();
+          this.dateFormat = temp.getUTCDate() + "-" + (temp.getUTCMonth() + 1) + '-' + temp.getUTCFullYear() + " " + temp.getHours() + ":" + temp.getMinutes();
         }
       } else {
         this.hasFire = false;

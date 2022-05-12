@@ -10,7 +10,7 @@
 //#define WIFI_PASSWORD "dhhs12cnvch"
 
 //Your Domain name with URL path or IP address with path
-String serverName = "http://192.168.1.100:3000/t";
+String serverName = "http://192.168.1.4:3000/t";
 String path ="/";
 void setup() {
   // put your setup code here, to run once:

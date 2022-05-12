@@ -1,4 +1,4 @@
-<div class="card">
+<!-- <div class="card">
   <div class="card-header">
     DataTable
   </div>
@@ -24,7 +24,7 @@
             <td>{{temp}}</td>
             <td *ngIf="hasFire " class="text-danger">Yes</td>
             <td *ngIf="!hasFire" class="text-success">No</td>
-            <td>{{date.hr}}:{{date.min}}</td>
+            <td>{{date.date}}-{{date.month}}-{{date.year}} {{date.hr}}:{{date.min}}</td>
             <td *ngIf="this.dateFormat!=0" class="text-danger">{{this.dateFormat}}</td>
             <td *ngIf="this.dateFormat==0" class="text-success">Fire not started yet</td>
             <td>
@@ -38,4 +38,199 @@
       </table>
     </div>
   </div>
-</div>
+</div> -->
+
+
+
+<!-- <caption class="top">
+  List of data
+</caption> -->
+<div>
+  <nav class="topnav">
+    <div class="branding">
+      <p>Fire warning app</p>
+    </div>
+    <div class="top-menu">
+      <!-- <p><a href="#">Home</a></p>
+      <p><a href="#">Services</a></p>
+      <p><a href="#">Portfolio</a></p>
+      <p><a href="#">Contact</a></p> -->
+    </div>
+  </nav>
+  <div style="min-height: 100vh;max-height: auto;">
+
+    <div class="container">
+      <div class="row justify-content-xl-between justify-content-sm-center ">
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+          <div class="card w-100">
+            <img class="card-img-top"
+              src="https://img.freepik.com/free-vector/storage-temperature-range-isolated-black-symbol-vector-illustration_522680-443.jpg?w=360"
+              alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Limit</h5>
+              <p class="card-text">{{ limit }}</p>
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+          <div class="card w-100">
+            <img class="card-img-top"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyovL86830Nt-Q8afm7GTfa6hgjV4kIFxYVQ&usqp=CAU"
+              alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Temperature</h5>
+              <p class="card-text">{{ temp }}</p>
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+          <div class="card w-100">
+            <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/4/41/Fire.JPG"
+              alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Has fire</h5>
+              <!-- <p class="card-text">{{ hasFire }}</p> -->
+              <p *ngIf="hasFire" class="card-text">Yes</p>
+              <p *ngIf="!hasFire" class="card-text">No</p>
+
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+          <div class="card w-100">
+            <img class="card-img-top" src="https://m.media-amazon.com/images/I/716EKNrjcdL._SY550_.jpg"
+              alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Last Run</h5>
+              <p class="card-text">{{date.date}}-{{date.month}}-{{date.year}} {{date.hr}}:{{date.min}}</p>
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+          <div class="card w-100">
+            <img class="card-img-top"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyjdPpnE62NcBkMSp2fygmDbiwKWJ_L-fr5g&usqp=CAU"
+              alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Fire Start</h5>
+              <p *ngIf="this.dateFormat!=0" class="card-text text-danger">{{this.dateFormat}}</p>
+              <p *ngIf="this.dateFormat==0" class="card-text text-success">No fire yet</p>
+              <!-- <p class="card-text">{{ limit }}</p> -->
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm d-flex justify-content-center">
+          <button class="button-76" type="button" (click)="openModal()">
+            <span class="text">Set Limit</span>
+          </button>
+        </div>
+        <div class="col-sm d-flex justify-content-center mt-3">
+          <button class="button-76" type="button" (click)="turnAlarm('on')" *ngIf="!this.alarm">
+            <span class="text">Turn on alarm</span>
+          </button>
+          <button class="button-76" type="button" (click)="turnAlarm('off')" *ngIf="this.alarm">
+            <span class="text">Turn off alarm</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <footer class="bg-dark text-center text-white">
+    <!-- Grid container -->
+    <div class="container p-4">
+      <!-- Section: Text -->
+      <section class="mb-4">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
+          repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
+          eum harum corrupti dicta, aliquam sequi voluptate quas.
+        </p>
+      </section>
+      <!-- Section: Text -->
+  
+      <!-- Section: Links -->
+      <section class="">
+        <!--Grid row-->
+        <div class="row justify-content-center">
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Name</h5>
+  
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a class="text-white">Diệp Thiên Thiên</a>
+              </li>
+              <li>
+                <a class="text-white">Nguyễn Hoàng Trung</a>
+              </li>
+              <li>
+                <a class="text-white">Đặng Thế Minh Long</a>
+              </li>
+
+            </ul>
+          </div>
+          <!--Grid column-->
+  
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase">MSSV</h5>
+  
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a class="text-white">2180530</a>
+              </li>
+              <li>
+                <a class="text-white">2181197</a>
+              </li>
+              <li>
+                <a class="text-white">2185019</a>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+  
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Roles</h5>
+  
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a class="text-white">Iot</a>
+              </li>
+              <li>
+                <a class="text-white">Front-Backend</a>
+              </li>
+              <li>
+                <a class="text-white">Front</a>
+              </li>
+            </ul>
+          </div>
+
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </section>
+      <!-- Section: Links -->
+    </div>
+    <!-- Grid container -->
+  
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2022 Copyright:
+      <a class="text-white">HSU</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
